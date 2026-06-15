@@ -37,8 +37,11 @@ class CartManager {
       const cart = await this.findOne(cid)
       if (!cart) throw new Error(`Cart ${cid} not found`);
       const productExist = cart.products.find(item => item.product._id.toString() === pid)
-      if(!productExist)  throw new Error(`Product ${pid} not found`);
-      productExist ? productExist.quantity += quantity : cart.products.push({ product: pid, quantity })
+      if (productExist) {
+        productExist.quantity += quantity
+      } else {
+        cart.products.push({ product: pid, quantity })
+      }
       cart.markModified("products");
       await cart.save();
       return cart;
@@ -66,8 +69,7 @@ class CartManager {
     try {
       const cart = await this.findOne(cid)
       if (!cart) throw new Error(`Cart ${cid} not found`);
-      const filtredProduct = cart.products.filter(item => item.product._id.toString() !== pid)
-      if(!filtredProduct)  throw new Error(`Product ${pid} not found`);
+      cart.products = cart.products.filter(item => item.product._id.toString() !== pid)
       cart.markModified("products");
       await cart.save();
       return cart;

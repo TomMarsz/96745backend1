@@ -4,7 +4,11 @@ import HTTP_RESPONSES from "./constants/http-responses.constant.js";
 import app from "./server.js";
 
 app.get("/", (req, res) => {
-  res.status(HTTP_RESPONSES.SUCCESS).render('index.handlebars', { title: 'HomePage | Backend 69990', style: 'index.css' })
+  res.status(HTTP_RESPONSES.SUCCESS).render('index.handlebars', { title: 'Home | Backend Store', style: 'index.css' })
+});
+
+app.get('/cart', (req, res) => {
+  res.status(HTTP_RESPONSES.SUCCESS).render('cart.handlebars', { title: 'Carrito | Backend Store', style: 'carts.css' })
 });
 
 app.get('*', (req, res) => {

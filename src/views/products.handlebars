@@ -1,37 +1,43 @@
-<div class="container">
-  <h2>Productos</h2>
+<section class="container">
+  <h2 class="page-title">Productos</h2>
 
-  <div class="product-container">
+  <div class="product-grid">
     {{#each response.payload}}
-    <div class="product-card">
-      <form action="/api/carts/:cid/products/{{_id}}" method="post" id="form">
-        <p >{{category}}</p>
-        <h3>{{title}}</h3>
-        <p>{{description}}</p>
-        <p>{{price}}</p>
-        <p>{{stock}}</p>
-        <p>{{_id}}</p>
-        <input type="hidden" name="quantity" value="1">
-        <button type="submit" id="submitBtn">Agregar al carrito</button>
-      </form>
-    </div>
+    <article class="product-card">
+      <div class="product-thumb">{{category}}</div>
+      <div class="product-body">
+        <span class="badge">{{category}}</span>
+        <h3 class="product-title">{{title}}</h3>
+        <p class="product-desc">{{description}}</p>
+        <div class="product-meta">
+          <span class="price">${{price}}</span>
+          <span class="stock {{#unless stock}}out{{/unless}}">
+            {{#if stock}}Stock: {{stock}}{{else}}Sin stock{{/if}}
+          </span>
+        </div>
+      </div>
+      <div class="card-actions">
+        <input type="number" class="qty-input" min="1" value="1" aria-label="Cantidad">
+        <button
+          class="btn btn-primary add-to-cart"
+          data-id="{{_id}}"
+          {{#unless stock}}disabled{{/unless}}>
+          Agregar al carrito
+        </button>
+      </div>
+    </article>
     {{/each}}
   </div>
 
   <div class="pagination">
-    {{#if response.hasPrevPage}}
-    <button><a href="/products?page={{response.prevPage}}">Anterior</a></button>
-    {{/if}}
-
-    {{#if response.hasNextPage}}
-    <button><a href="/products?page={{response.nextPage}}">Siguiente</a></button>
-    {{/if}}
-    <span>Página {{response.page}} de {{response.totalPages}}</span>
+    <a
+      class="btn btn-ghost {{#unless response.hasPrevPage}}is-disabled{{/unless}}"
+      href="/products?page={{response.prevPage}}">← Anterior</a>
+    <span class="page-info">Página {{response.page}} de {{response.totalPages}}</span>
+    <a
+      class="btn btn-ghost {{#unless response.hasNextPage}}is-disabled{{/unless}}"
+      href="/products?page={{response.nextPage}}">Siguiente →</a>
   </div>
+</section>
 
-  <button><a href="http://localhost:8080/">Back to Home</a></button>
-</div>
-
-</div>
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-<script src="/js/products.js"></script>
+<script src="/js/products.js" defer></script>

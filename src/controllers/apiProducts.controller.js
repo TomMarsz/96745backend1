@@ -60,7 +60,7 @@ router.put("/:pid", async (req, res) => {
   const { pid } = req.params
   const { title, description, price, stock, category } = req.body
   try {
-    if (!title || !description || !price || !stock || !category) return res.status(HTTP_RESPONSES.BAD_REQUEST).json({ error: error.message })
+    if (!title || !description || !price || !stock || !category) return res.status(HTTP_RESPONSES.BAD_REQUEST).json({ error: "All fields are required: title, description, price, stock, category" })
     const productInfo = { title, description, price, stock, category }
     const updatedProduct = await productManager.updateOne(pid, productInfo)
     res.status(HTTP_RESPONSES.ACCEPTED).json({ payload: { updatedProduct } })

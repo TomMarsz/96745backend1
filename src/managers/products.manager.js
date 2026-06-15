@@ -33,8 +33,7 @@ class ProductManager {
 	async updateOne(pid, productInfo) {
 		try {
 			productInfo.updatedAt = new Date()
-			await Product.findByIdAndUpdate(pid, productInfo)
-			return await Product.find(pid)
+			return await Product.findByIdAndUpdate(pid, productInfo, { new: true })
 		} catch (error) {
 			throw error
 		}

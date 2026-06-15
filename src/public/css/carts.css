@@ -1,53 +1,109 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  background-color: rgb(20, 15, 70);
-  color: rgb(255, 255, 255);
-}
-
-.container {
-  margin: 2em;
+.cart-root {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 
-.container h2,
-.container p {
-  margin-bottom: 2rem;
+.cart-loading {
+  color: var(--muted);
+  padding: 2rem;
 }
 
-h2 span {
-  color: yellow;
-}
-
-table {
-  width: 50%;
+.cart-table {
+  width: 100%;
+  max-width: 820px;
   border-collapse: collapse;
-  margin: 20px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
 }
 
-th,
-td {
-  border: 1px solid rgb(221, 221, 221);
+.cart-table th,
+.cart-table td {
+  padding: 0.9rem 1rem;
   text-align: left;
-  padding: 8px;
+  border-bottom: 1px solid var(--border);
 }
 
-th {
-  background-color: rgb(20, 15, 70);
+.cart-table thead th {
+  background: var(--surface-2);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
 }
 
-th span {
-  color: aquamarine;
+.cart-table tbody tr:hover {
+  background: rgba(124, 92, 255, 0.08);
 }
 
-li {
-  list-style: none;
+.cart-table tfoot td {
+  border-bottom: none;
+  font-weight: 700;
+}
+
+.total-label {
+  text-align: right;
+  color: var(--muted);
+}
+
+.total {
+  font-size: 1.2rem;
+  color: var(--accent-hover);
+}
+
+/* ---------- Quantity controls ---------- */
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.qty-btn:hover {
+  background: var(--accent);
+}
+
+.qty {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ---------- Actions ---------- */
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 820px;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Empty state ---------- */
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 3rem 1rem;
+}
+
+.empty-cart-msg {
+  font-size: 1.2rem;
+  color: var(--muted);
 }

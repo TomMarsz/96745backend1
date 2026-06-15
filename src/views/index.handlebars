@@ -1,9 +1,15 @@
-<div class="container">
-  <h2>Welcome</h2>
-  <p>Click any of the following btn to redirect:</p>
-  <div class="btn-container">
-    <button><a href="http://localhost:8080/api/products">/api/products</a></button>
-    <button><a href="http://localhost:8080/api/carts">/api/carts</a></button>
-    <button><a href="http://localhost:8080/products">/products</a></button>
+<section class="hero">
+  <h1 class="hero-title">Bienvenido a <span>Backend Store</span></h1>
+  <p class="hero-subtitle">Explorá el catálogo, agregá productos a tu carrito y gestioná tu compra.</p>
+
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="/products">Ver productos</a>
+    <a class="btn btn-ghost" href="/cart">Ir al carrito</a>
   </div>
-</div>
+
+  <div class="hero-links">
+    <span>API:</span>
+    <a href="/api/products">/api/products</a>
+    <a href="/api/carts">/api/carts</a>
+  </div>
+</section>
